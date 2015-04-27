@@ -2,8 +2,11 @@
     "name": "aviogram/jwt",
     "description": "JSON Web Token",
     "require": {
-        "psr/log": "1.0",
-        "aviogram/common": "dev-master"
+        "aviogram/common": "dev-master",
+        "php" : ">=5.4"
+    },
+    "suggest" : {
+        "ext-openssl" : "Add support for RSA keys"
     },
     "license": "MIT",
     "authors": [
