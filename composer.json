@@ -1,0 +1,21 @@
+{
+    "name": "aviogram/jwt",
+    "description": "JSON Web Token",
+    "require": {
+        "psr/log": "1.0",
+        "aviogram/common": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jesper Dolieslager",
+            "email": "aviogram@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Aviogram\\JWT\\" : "src/"
+        }
+    }
+}
