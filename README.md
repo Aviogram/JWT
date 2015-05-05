@@ -27,7 +27,7 @@ Algorithm Support
 --------------------------------
 
 | Algorithm  | Type       | Engine   | Support |
-| -----------| ---------- | -------------------|
+| -----------| ---------- | ---------|---------|
 | HS256      | Symmetric  | HMAC     | Yes     |
 | HS384      | Symmetric  | HMAC     | Yes     |
 | HS512      | Symmetric  | HMAC     | Yes     |
