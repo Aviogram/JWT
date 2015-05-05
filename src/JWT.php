@@ -38,6 +38,8 @@ class JWT
         22 => 'The key defined in the header is not defined',
         23 => 'The JWT type does not match',
         24 => 'The JWT has been issued in the future',
+        25 => 'Could not validate the signature',
+        26 => 'Could not validate the signature, because the encryption algorithm is not supported',
     );
 
     /**
@@ -176,9 +178,15 @@ class JWT
             throw new Exception\DecodeFailed(static::$exceptions[21], 21);
         }
 
-        // Check if the JWT is valid
-        if ($encryption->verify("{$encodedHeader}.{$encodedClaimSet}", $signature) === false) {
-            throw new Exception\DecodeFailed(static::$exceptions[16], 16);
+        try {
+            // Check if the JWT is valid
+            if ($encryption->verify("{$encodedHeader}.{$encodedClaimSet}", $signature) === false) {
+                throw new Exception\DecodeFailed(static::$exceptions[16], 16);
+            }
+        } catch (Exception\EncryptionFailed $e) {
+            throw new Exception\DecodeFailed(static::$exceptions[25], 25, $e);
+        } catch (Exception\EncryptionNotSupported $e) {
+            throw new Exception\DecodeFailed(static::$exceptions[26], 26, $e);
         }
 
         // Decode the base64 encoded string
@@ -211,7 +219,7 @@ class JWT
 
         // Set the remainder of the data in the custom section
         foreach ($remainder as $field => $value) {
-            $claimSet->setCustomClaim($field, $value);
+            $claimSet->addCustomClaim($field, $value);
         }
 
         // If no verification input has been given, make it empty

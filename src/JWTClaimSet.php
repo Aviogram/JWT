@@ -215,7 +215,14 @@ class JWTClaimSet implements \JsonSerializable
         return $this;
     }
 
-    public function setCustomClaim($name, $value)
+    /**
+     * @param  string $name
+     * @param  mixed  $value
+     *
+     * @return $this
+     * @throws Exception\ReservedClaim
+     */
+    public function addCustomClaim($name, $value)
     {
         if (property_exists($this, $name) === true) {
             throw new Exception\ReservedClaim("Claim with the name {$name} is reserved.");
@@ -239,6 +246,14 @@ class JWTClaimSet implements \JsonSerializable
         }
 
         return $this->custom[$name];
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomClaims()
+    {
+        return $this->custom;
     }
 
     /**
