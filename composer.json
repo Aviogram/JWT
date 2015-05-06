@@ -2,7 +2,7 @@
     "name": "aviogram/jwt",
     "description": "JSON Web Token",
     "require": {
-        "aviogram/common": "dev-master",
+        "aviogram/common": "~0.1.0",
         "php" : ">=5.4"
     },
     "suggest" : {
